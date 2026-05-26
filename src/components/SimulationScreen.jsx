@@ -1,7 +1,9 @@
-import DiningTable  from './DiningTable';
-import ControlPanel from './ControlPanel';
+import DiningTable   from './DiningTable';
+import ControlPanel  from './ControlPanel';
 import StatusSidebar from './StatusSidebar';
 import EventLog      from './EventLog';
+import FlowchartView from './FlowchartView';
+import CLabTerminal  from './CLabTerminal';
 import '../styles/simulation.css';
 
 export default function SimulationScreen({ sim }) {
@@ -9,21 +11,25 @@ export default function SimulationScreen({ sim }) {
 
   if (!currentState) return null;
 
-  const { philosophers, forks, event, isDeadlock, activePhilosopher, activeForks, isFinal } = currentState;
+  const {
+    philosophers, forks, event, isDeadlock,
+    activePhilosopher, activeForks, isFinal,
+    stepType, terminalLines,
+  } = currentState;
+
   const events = steps.map(s => s.event);
 
   return (
     <div className="sim-wrapper">
+
       {/* Top: current event banner */}
-      <div className={`event-banner glass-card ${isDeadlock ? 'banner-deadlock' : isFinal ? 'banner-success' : 'banner-normal'}`}
-           id="current-event-banner">
+      <div
+        className={`event-banner glass-card ${isDeadlock ? 'banner-deadlock' : isFinal ? 'banner-success' : 'banner-normal'}`}
+        id="current-event-banner"
+      >
         <span className="banner-text">{event}</span>
-        {isDeadlock && (
-          <span className="deadlock-tag">DEADLOCK</span>
-        )}
-        {isFinal && !isDeadlock && (
-          <span className="success-tag">COMPLETE</span>
-        )}
+        {isDeadlock && <span className="deadlock-tag">DEADLOCK</span>}
+        {isFinal && !isDeadlock && <span className="success-tag">COMPLETE</span>}
       </div>
 
       {/* Deadlock alert */}
@@ -47,7 +53,14 @@ export default function SimulationScreen({ sim }) {
         <div className="config-strip-item">
           <span className="strip-label">Hungry</span>
           <span className="strip-value text-mono" style={{ color: 'var(--color-hungry)' }}>
-            {config.hungryIndices.map(i => `P${i+1}`).join(', ')}
+            {config.hungryIndices.map(i => `P${i + 1}`).join(', ')}
+          </span>
+        </div>
+        <div className="config-strip-divider" />
+        <div className="config-strip-item">
+          <span className="strip-label">Resources</span>
+          <span className="strip-value text-mono" style={{ color: '#6366f1' }}>
+            {config.totalPhilosophers} Forks
           </span>
         </div>
         <div className="config-strip-divider" />
@@ -66,9 +79,10 @@ export default function SimulationScreen({ sim }) {
         </div>
       </div>
 
-      {/* Main grid: table + sidebar */}
+      {/* Main grid */}
       <div className="sim-main-grid">
-        {/* Left: Table + Controls + Log */}
+
+        {/* LEFT column: Table + Controls + Event log */}
         <div className="sim-left">
           <div className="table-card glass-card">
             <DiningTable
@@ -77,20 +91,28 @@ export default function SimulationScreen({ sim }) {
               activePhilosopher={activePhilosopher}
               activeForks={activeForks ?? []}
               isDeadlock={isDeadlock}
+              stepType={stepType}
             />
           </div>
-
           <ControlPanel sim={sim} />
           <EventLog events={events} currentStep={currentStep} />
         </div>
 
-        {/* Right: Sidebar */}
+        {/* RIGHT column: Flowchart + Status + Terminal + Legend */}
         <div className="sim-right">
+
+          {/* Flowchart — Step by step process */}
+          <FlowchartView currentState={currentState} />
+
+          {/* Philosopher states */}
           <StatusSidebar
             philosophers={philosophers}
             forks={forks}
             activePhilosopher={activePhilosopher}
           />
+
+          {/* C Lab Terminal */}
+          <CLabTerminal terminalLines={terminalLines} />
 
           {/* Legend */}
           <div className="legend-card glass-card">
@@ -111,7 +133,13 @@ export default function SimulationScreen({ sim }) {
                 </div>
               ))}
             </div>
+            {/* Resource explanation */}
+            <div className="legend-resource-note">
+              <span className="resource-note-icon">ℹ️</span>
+              <span>Each fork (F1–F{config.totalPhilosophers}) is a shared <strong>mutex</strong>. A philosopher needs BOTH adjacent forks to eat.</span>
+            </div>
           </div>
+
         </div>
       </div>
     </div>

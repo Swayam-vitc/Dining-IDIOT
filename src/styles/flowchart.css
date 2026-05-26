@@ -1,0 +1,273 @@
+/* ===== FLOWCHART PANEL ===== */
+
+.fc-wrapper {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.10);
+  overflow: hidden;
+  animation: fadeInUp 0.4s ease;
+}
+
+/* Header */
+.fc-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.12);
+  background: rgba(99, 102, 241, 0.06);
+}
+
+.fc-header-icon {
+  font-size: 1rem;
+}
+
+.fc-header-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #4338ca;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Description box */
+.fc-description-box {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  background: rgba(99, 102, 241, 0.07);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.10);
+  animation: slideInRight 0.35s ease;
+}
+
+.fc-desc-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.fc-desc-text {
+  font-size: 0.78rem;
+  color: #3730a3;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+/* Steps list */
+.fc-steps-list {
+  padding: 14px 14px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Each step row */
+.fc-step-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  min-height: 40px;
+}
+
+/* Left side — dot + connector */
+.fc-step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22px;
+  flex-shrink: 0;
+}
+
+.fc-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.fc-dot-done    { background: #22c55e; color: #fff; box-shadow: 0 0 8px rgba(34,197,94,0.4); }
+.fc-dot-active  { background: #6366f1; color: #fff; box-shadow: 0 0 12px rgba(99,102,241,0.5); }
+.fc-dot-pending { background: #e2e8f0; color: #94a3b8; border: 1.5px solid #cbd5e1; }
+.fc-dot-error   { background: #ef4444; color: #fff; box-shadow: 0 0 8px rgba(239,68,68,0.4); }
+.fc-dot-skipped { background: #f1f5f9; color: #cbd5e1; border: 1.5px dashed #cbd5e1; }
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 12px rgba(99,102,241,0.5); }
+  50% { transform: scale(1.2); box-shadow: 0 0 20px rgba(99,102,241,0.8); }
+}
+.fc-dot-pulse { animation: dotPulse 1.2s ease-in-out infinite; }
+
+/* Connector line */
+.fc-connector {
+  width: 2px;
+  flex: 1;
+  margin: 2px 0;
+  border-radius: 1px;
+  min-height: 14px;
+  transition: background 0.4s ease;
+}
+.fc-connector-done    { background: linear-gradient(to bottom, #22c55e, #86efac); }
+.fc-connector-pending { background: #e2e8f0; }
+
+/* Step content box */
+.fc-step-content {
+  flex: 1;
+  border-radius: 10px;
+  padding: 6px 12px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  border: 1.5px solid transparent;
+}
+
+.fc-step-done    { background: rgba(34,197,94,0.08);   border-color: rgba(34,197,94,0.20);  }
+.fc-step-active  { background: rgba(99,102,241,0.10);  border-color: rgba(99,102,241,0.30); }
+.fc-step-pending { background: rgba(241,245,249,0.7);  border-color: rgba(203,213,225,0.5); }
+.fc-step-error   { background: rgba(239,68,68,0.08);   border-color: rgba(239,68,68,0.25);  }
+.fc-step-skipped { background: rgba(248,250,252,0.5);  border-color: rgba(226,232,240,0.4); }
+
+@keyframes activeGlow {
+  0%, 100% { box-shadow: 0 0 0px rgba(99,102,241,0); }
+  50%       { box-shadow: 0 0 16px rgba(99,102,241,0.25); }
+}
+.fc-step-active-glow { animation: activeGlow 1.5s ease-in-out infinite; }
+
+.fc-step-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fc-step-icon {
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.fc-step-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1e293b;
+  flex: 1;
+}
+
+.fc-step-badge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 99px;
+  flex-shrink: 0;
+}
+
+.fc-step-badge.done    { background: rgba(34,197,94,0.15);   color: #15803d; }
+.fc-step-badge.active  { background: rgba(99,102,241,0.15);  color: #4338ca; }
+.fc-step-badge.pending { background: rgba(203,213,225,0.4);  color: #64748b; }
+.fc-step-badge.error   { background: rgba(239,68,68,0.15);   color: #dc2626; }
+.fc-step-badge.skipped { background: rgba(226,232,240,0.5);  color: #94a3b8; }
+
+.fc-step-desc {
+  margin-top: 5px;
+  font-size: 0.72rem;
+  color: #475569;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ---- SPECIAL SCREENS ---- */
+
+/* Init screen */
+.fc-init-box {
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.fc-init-icon { font-size: 2.5rem; animation: float 3s ease-in-out infinite; }
+.fc-init-title { font-size: 1rem; font-weight: 800; color: #4338ca; }
+.fc-init-desc { font-size: 0.76rem; color: #64748b; line-height: 1.6; }
+
+.fc-init-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.fc-legend-chip {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.fc-legend-chip.thinking { background: rgba(99,102,241,0.12);  color: #4338ca; }
+.fc-legend-chip.hungry   { background: rgba(245,158,11,0.12);  color: #b45309; }
+.fc-legend-chip.eating   { background: rgba(34,197,94,0.12);   color: #15803d; }
+.fc-legend-chip.waiting  { background: rgba(251,146,60,0.12);  color: #c2410c; }
+
+/* Complete screen */
+.fc-complete-box {
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.fc-complete-icon  { font-size: 2.5rem; }
+.fc-complete-title { font-size: 1rem; font-weight: 800; color: #15803d; }
+.fc-complete-desc  { font-size: 0.76rem; color: #64748b; line-height: 1.6; }
+
+/* Deadlock screen */
+.fc-deadlock-box {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  animation: bounceIn 0.5s ease;
+}
+.fc-deadlock-icon  { font-size: 2.5rem; animation: pulse 1s ease-in-out infinite; }
+.fc-deadlock-title { font-size: 1.1rem; font-weight: 900; color: #dc2626; letter-spacing: 0.05em; }
+.fc-deadlock-desc  { font-size: 0.76rem; color: #7f1d1d; line-height: 1.6; }
+
+.fc-deadlock-conditions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.fc-condition {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 5px 8px;
+  background: rgba(239,68,68,0.10);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 8px;
+  color: #991b1b;
+  text-align: center;
+}
+
+/* Float animation reuse */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}

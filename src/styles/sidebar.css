@@ -1,0 +1,142 @@
+/* ===== STATUS SIDEBAR ===== */
+.sidebar {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: fit-content;
+}
+
+.sidebar-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(99,102,241,0.1);
+}
+
+/* Philosopher list */
+.philosopher-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.philo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  gap: 8px;
+}
+
+.philo-row-active {
+  transform: scale(1.02);
+}
+
+.state-row-thinking {
+  background: rgba(99,102,241,0.05);
+  border-color: rgba(99,102,241,0.15);
+}
+.state-row-hungry {
+  background: rgba(245,158,11,0.07);
+  border-color: rgba(245,158,11,0.2);
+}
+.state-row-eating {
+  background: rgba(34,197,94,0.08);
+  border-color: rgba(34,197,94,0.25);
+  animation: glow-green 1.4s ease-in-out infinite;
+}
+.state-row-waiting {
+  background: rgba(251,146,60,0.07);
+  border-color: rgba(251,146,60,0.2);
+  animation: shake 0.5s ease-in-out;
+}
+
+.philo-row-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.philo-avatar {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.philo-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.philo-stats {
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Fork status */
+.fork-status-section {
+  border-top: 1px solid rgba(99,102,241,0.1);
+  padding-top: 14px;
+}
+
+.fork-status-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.fork-status-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fork-status-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: 1.5px solid transparent;
+  transition: all 0.35s ease;
+}
+
+.fork-free {
+  background: rgba(148,163,184,0.1);
+  border-color: rgba(148,163,184,0.25);
+  color: var(--text-secondary);
+}
+
+.fork-taken {
+  background: rgba(249,115,22,0.12);
+  border-color: rgba(249,115,22,0.3);
+  color: var(--fork-held);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.fork-status-icon {
+  font-size: 0.85rem;
+}
+
+.fork-status-label {
+  font-size: 0.72rem;
+}
+
+.fork-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-left: 2px;
+}
+
+.dot-free  { background: var(--fork-free);  }
+.dot-taken { background: var(--fork-held); }

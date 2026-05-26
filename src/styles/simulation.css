@@ -1,0 +1,224 @@
+/* ===== SIMULATION SCREEN ===== */
+.sim-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeInUp 0.45s ease;
+}
+
+/* Event banner */
+.event-banner {
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: var(--radius-md);
+  transition: all 0.4s ease;
+}
+
+.banner-normal {
+  background: rgba(255,255,255,0.65);
+  border-color: rgba(99,102,241,0.2);
+}
+
+.banner-deadlock {
+  background: rgba(254,202,202,0.6);
+  border-color: rgba(239,68,68,0.35);
+  animation: glow-red 1.4s ease-in-out infinite;
+}
+
+.banner-success {
+  background: rgba(220,252,231,0.6);
+  border-color: rgba(34,197,94,0.35);
+  animation: glow-green 1.4s ease-in-out infinite;
+}
+
+.banner-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+  animation: slideInRight 0.35s ease;
+}
+
+.deadlock-tag {
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: var(--color-deadlock);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.success-tag {
+  padding: 4px 12px;
+  border-radius: 99px;
+  background: var(--color-eating);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* Deadlock alert box */
+.deadlock-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 22px;
+  background: rgba(254,202,202,0.55);
+  border: 2px solid rgba(239,68,68,0.3);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  animation: bounceIn 0.5s ease;
+}
+
+.deadlock-alert-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.deadlock-alert strong {
+  font-size: 1rem;
+  color: var(--color-deadlock);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.deadlock-alert p {
+  font-size: 0.85rem;
+  color: #b91c1c;
+  line-height: 1.6;
+}
+
+/* Config strip */
+.config-strip {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  border-radius: var(--radius-md);
+}
+
+.config-strip-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 20px;
+  flex: 1;
+  min-width: 100px;
+}
+
+.config-strip-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(99,102,241,0.12);
+  flex-shrink: 0;
+}
+
+.strip-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.strip-value {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.strip-on      { color: var(--color-eating);  }
+.strip-off     { color: var(--text-muted);    }
+.strip-deadlock{ color: var(--color-deadlock);}
+.strip-safe    { color: var(--color-eating);  }
+
+/* Main grid */
+.sim-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .sim-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left column */
+.sim-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Table card */
+.table-card {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+}
+
+/* Right column */
+.sim-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Legend */
+.legend-card {
+  padding: 16px 18px;
+}
+
+.legend-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-emoji {
+  font-size: 0.9rem;
+}
+
+.legend-label {
+  font-weight: 500;
+}

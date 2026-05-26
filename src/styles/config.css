@@ -1,0 +1,324 @@
+/* ===== CONFIG SCREEN ===== */
+
+.config-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: fadeInUp 0.5s ease;
+}
+
+/* Hero */
+.config-hero {
+  text-align: center;
+  padding: 40px 24px 20px;
+}
+
+.hero-icon {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  animation: float 3s ease-in-out infinite;
+  display: block;
+}
+
+.hero-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--accent) 0%, #a855f7 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Info Cards */
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 700px) {
+  .info-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+.info-card {
+  padding: 20px 16px;
+  text-align: center;
+  transition: transform var(--transition-normal);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+}
+
+.info-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.info-card h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.info-card p {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Config Form */
+.config-form {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+@media (max-width: 600px) {
+  .config-form { padding: 24px 20px; }
+}
+
+.config-form-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(99,102,241,0.12);
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-hint {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.form-hint-block {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* Number Input */
+.number-input-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.num-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm) !important;
+}
+
+.num-display {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  width: 48px;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+/* Philosopher strip */
+.philosopher-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.strip-philosopher {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  transition: all var(--transition-normal);
+}
+
+.strip-philosopher.thinking {
+  background: rgba(99,102,241,0.1);
+  color: var(--color-thinking);
+  border: 1.5px solid rgba(99,102,241,0.2);
+}
+
+.strip-philosopher.hungry {
+  background: rgba(245,158,11,0.15);
+  color: var(--color-hungry);
+  border: 1.5px solid rgba(245,158,11,0.3);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Checkbox grid */
+.checkbox-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.checkbox-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,0.5);
+  transition: all var(--transition-normal);
+  min-width: 70px;
+  user-select: none;
+}
+
+.checkbox-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99,102,241,0.3);
+  background: rgba(99,102,241,0.06);
+}
+
+.checkbox-item.checked {
+  border-color: var(--color-hungry);
+  background: rgba(245,158,11,0.1);
+  animation: bounceIn 0.3s ease;
+}
+
+.checkbox-emoji {
+  font-size: 1.6rem;
+}
+
+.checkbox-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+.checkbox-item.checked .checkbox-label {
+  color: var(--color-hungry);
+}
+
+/* Toggle Switch */
+.toggle-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-direction: row !important;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  background: #e2e8f0;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: background var(--transition-normal);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.toggle-switch.on {
+  background: var(--accent);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform var(--transition-normal);
+}
+
+.toggle-switch.on .toggle-thumb {
+  transform: translateX(24px);
+}
+
+/* Deadlock Warning */
+.deadlock-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(239,68,68,0.08);
+  border: 1.5px solid rgba(239,68,68,0.25);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  color: var(--color-deadlock);
+  animation: fadeInUp 0.3s ease;
+}
+
+.deadlock-warning span {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.deadlock-warning p {
+  margin-top: 4px;
+  color: #b91c1c;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* Error */
+.form-error {
+  padding: 10px 16px;
+  background: rgba(239,68,68,0.08);
+  border-radius: var(--radius-sm);
+  color: var(--color-deadlock);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Start Button */
+.start-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 14px 24px;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  margin-top: 4px;
+}

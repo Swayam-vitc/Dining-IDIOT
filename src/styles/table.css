@@ -1,0 +1,31 @@
+/* ===== DINING TABLE ===== */
+.dining-table-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.dining-svg {
+  overflow: visible;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 12px 40px rgba(99,102,241,0.10));
+}
+
+.dining-svg.deadlock-flash {
+  animation: deadlock-svg-flash 1.2s ease-in-out infinite;
+}
+
+@keyframes deadlock-svg-flash {
+  0%, 100% { filter: drop-shadow(0 12px 40px rgba(239,68,68,0.15)); }
+  50%       { filter: drop-shadow(0 12px 60px rgba(239,68,68,0.45)); }
+}
+
+.table-surface {
+  transition: fill 0.5s ease;
+  filter: drop-shadow(0 4px 12px rgba(99,102,241,0.12));
+}
+
+.fork-line {
+  transition: stroke 0.4s ease, stroke-width 0.3s ease;
+}

@@ -1,0 +1,63 @@
+/* ===== FORK SVG STYLES ===== */
+
+.fork-group {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Background pill */
+.fork-bg {
+  transition: fill 0.4s ease, stroke 0.4s ease;
+}
+
+.fork-bg-free {
+  fill: rgba(241,245,249,0.9);
+  stroke: var(--fork-free);
+  stroke-width: 1.5;
+}
+
+.fork-bg-held {
+  fill: rgba(255,237,213,0.95);
+  stroke: var(--fork-held);
+  stroke-width: 2;
+}
+
+.fork-group.active .fork-bg-held {
+  animation: glow-green 0.8s ease-in-out infinite;
+  stroke: var(--color-eating);
+  fill: rgba(220,252,231,0.95);
+}
+
+/* Fork parts */
+.fork-handle {
+  fill: var(--fork-free);
+  transition: fill 0.4s ease;
+}
+.fork-tine {
+  fill: var(--fork-free);
+  transition: fill 0.4s ease;
+}
+
+.fork-group.held .fork-handle,
+.fork-group.held .fork-tine {
+  fill: var(--fork-held);
+}
+
+.fork-group.active .fork-handle,
+.fork-group.active .fork-tine {
+  fill: var(--color-eating);
+  animation: pulse 0.8s ease-in-out infinite;
+}
+
+/* Fork label */
+.fork-label {
+  fill: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 9px;
+  user-select: none;
+  transition: fill 0.4s ease;
+}
+
+.fork-label-held {
+  fill: var(--fork-held);
+}
